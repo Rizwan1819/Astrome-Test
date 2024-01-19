@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <script src="script.js"></script>
+
+  <div class="parentBox">
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <div class="box5"></div>
+  </div>
+  <div class="buttons">
+    <button class="btn1">Start</button>
+    <button class="btn2">Stop</button>
+    <button class="btn3">End</button>
+  </div>
+  <script src="https://replit.com/public/js/replit-badge-v2.js" theme="dark" position="bottom-right"></script>
+
+  <script>
+    const boxes = document.querySelectorAll('.box1, .box2, .box3, .box4, .box5');
+    let animationRunning = false;
+
+    function startAnimation() {
+      console.log("before start", animationRunning)
+      animationRunning = true;
+      console.log("After Start Clicked", animationRunning)
+
+      boxes.forEach((box, index) => {
+        box.style.animationPlayState = 'running';
+      });
+
+      animationRunning = true;
+    }
+
+    function stopAnimation() {
+      console.log("stop clicked", animationRunning);
+
+      if (animationRunning) {
+        boxes.forEach((box, index) => {
+          box.style.animationPlayState = 'paused';
+        });
+
+        // animationRunning = false;
+      }
+    }
+
+
+    function endAnimation() {
+      console.log("End clicked", animationRunning);
+
+      if (animationRunning !== false) {
+        boxes.forEach((box, index) => {
+
+          box.style.animation = 'none';
+          box.style.animationPlayState = 'paused';
+
+          box.style.transform = 'translateY(0)';
+        });
+
+        setTimeout(() => {
+
+          boxes.forEach((box, index) => {
+            box.style.animation = '';
+          });
+        }, 1000);
+      }
+      animationRunning = false;
+    }
+
+
+
+
+
+    document.querySelector('.btn1').addEventListener('click', startAnimation);
+    document.querySelector('.btn2').addEventListener('click', stopAnimation);
+    document.querySelector('.btn3').addEventListener('click', endAnimation);
+
+  </script>
+</body>
+
+</html>
